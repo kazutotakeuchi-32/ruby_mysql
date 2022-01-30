@@ -4,7 +4,7 @@ class User < MyActiveRecord
   @@table_name = "users"
 
   def initialize(firstname,lastname,email,age,location,id=nil)
-    @id = nil
+    @id = id
     @firstname = firstname
     @lastname  = lastname
     @email = email 
@@ -22,6 +22,8 @@ class User < MyActiveRecord
 
 
 end
+
+ User.first
 
 # result= User.find(10)
 # # result.each{|result| p result}

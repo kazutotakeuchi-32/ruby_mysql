@@ -8,12 +8,33 @@ class MyActiveRecord
     @@client.query(sql)
   end
 
+  def self.all
+    @@client.query("SELECT * FROM #{@@table_name}")
+  end
+
   def self.find(query)
-    @@client.query("SELECT * FROM #{@@table_name} WHERE id = #{query} ")
+    @@client.query("SELECT * FROM #{@@table_name} WHERE id=#{query} ")
   end
 
   def self.where(query)
     @@client.query("SELECT * FROM #{@@table_name} where #{query}")
+  end
+
+  def self.first
+    self.find(1).map{|r|r}[0]
+  end
+
+  def self.second
+    self.find(2).map{|r|r}[0]
+  end
+
+  def self.third
+    self.find(3).map{|r|r}[0]
+  end
+
+  def self.last
+   record = self.all().map{|r|r}
+   record[record.length-1]
   end
 
   def self.create(hash)
