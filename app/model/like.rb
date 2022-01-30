@@ -7,5 +7,5 @@ class Like < MyActiveRecord
     @user_id = user_id
     @article_id = article_id
   end
-  
+  # 
 end
