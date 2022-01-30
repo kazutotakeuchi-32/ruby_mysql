@@ -30,5 +30,9 @@ class Article < MyActiveRecord
     result
   end
 
+  def like_count
+    likes().map{|r|r.size}.count
+  end
+
 end
 
