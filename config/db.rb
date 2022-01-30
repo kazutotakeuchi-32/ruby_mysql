@@ -17,7 +17,7 @@ class MyActiveRecord
   end
 
   def self.where(query)
-    @@client.query("SELECT * FROM #{@@table_name} where #{query}")
+    @@client.query("SELECT * FROM #{@@table_name} WHERE #{query}")
   end
 
   def self.first

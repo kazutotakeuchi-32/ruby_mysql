@@ -17,4 +17,3 @@ class Article < MyActiveRecord
   end
 end
 
-Article.find(1)

@@ -1,4 +1,6 @@
 require "/Users/takeuchikazuto/project/ruby_mysql/config/db.rb"
+require "/Users/takeuchikazuto/project/ruby_mysql/app/model/article.rb"
+require "/Users/takeuchikazuto/project/ruby_mysql/app/model/like.rb"
 
 class User < MyActiveRecord
   @@table_name = "users"
@@ -20,11 +22,38 @@ class User < MyActiveRecord
     end
   end
 
+  def articles
+    @@table_name = "articles"
+    result = Article.where("user_id=#{@id}")
+    @@table_name = "users"
+    result
+  end
+
+  def likes
+    @@table_name = "likes"
+    result = Like.where("user_id=#{@id}")
+    @@table_name = "users"
+    result
+  end
 
 end
 
- User.first
+first = User.first
 
+user=User.new(
+  "test2", 
+  "test2",
+  "test@test.com",
+  20,
+  "JP",
+  1
+)
+
+puts user.articles.map{|f|f}
+puts user.likes.map{|f|f}
+
+
+# puts first
 # result= User.find(10)
 # # result.each{|result| p result}
 
