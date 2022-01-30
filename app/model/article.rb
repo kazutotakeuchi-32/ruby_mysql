@@ -15,5 +15,20 @@ class Article < MyActiveRecord
       self.query("SELECT * FROM #{@@table_name} WHERE #{keyword} LIKE '%#{keyword}%'")
     end
   end
+
+  def user
+    @@table_name = "users"
+    result = User.where("id=#{@user_id}")
+    @@table_name = "articles"
+    result
+  end
+
+  def likes
+    @@table_name = "likes"
+    result = Like.where("article_id=#{@id}")
+    @@table_name = "articles"
+    result
+  end
+
 end
 
