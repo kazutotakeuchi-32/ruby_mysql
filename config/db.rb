@@ -21,8 +21,6 @@ class MyActiveRecord
     values = (hash.values.map do |h|
       h.instance_of?(String) ? "'"+ h + "'" : h
     end).join(",")
-    p keys 
-    p values
     @@client.query("INSERT INTO #{@@table_name} (#{keys}) VALUES (#{values}) ")
     rescue => e
       puts e
