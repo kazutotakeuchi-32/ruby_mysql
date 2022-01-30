@@ -23,12 +23,20 @@ class User < MyActiveRecord
 
 end
 
-result= User.find(10)
-# result.each{|result| p result}
+# result= User.find(10)
+# # result.each{|result| p result}
 
-u = User.new("test1","test1","test@test.com",10,"JP")
+# User.create({
+#   firstname:"test2", 
+#   lastname:"test2",
+#   email:"test@test.com",
+#   age: 20,
+#   location: "JP"
+# })
 
-u.save()
+# # u = User.new("test1","test1","test@test.com",10,"JP")
 
-# p u.set_column()
-# p u.set_value
+# # u.save()
+
+# # p u.set_column()
+# # p u.set_value
