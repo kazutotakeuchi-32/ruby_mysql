@@ -34,5 +34,10 @@ class Article < MyActiveRecord
     likes().map{|r|r.size}.count
   end
 
+  def self.all
+    @@table_name = "articles"
+    @@client.query("SELECT * FROM #{@@table_name}")
+  end
+
 end
 

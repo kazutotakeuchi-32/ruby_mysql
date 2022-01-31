@@ -1,6 +1,7 @@
 require "mysql2"
 
 class MyActiveRecord
+  @@table_name = nil
   @@table_name = "users"
   @@client = Mysql2::Client.new(host: "localhost", username: "root", password: 'yes', database: 'test')
 

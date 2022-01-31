@@ -36,18 +36,23 @@ class User < MyActiveRecord
     result
   end
 
+  def self.all
+    @@table_name = "users"
+    @@client.query("SELECT * FROM #{@@table_name}")
+  end
+
 end
 
-first = User.first
+# first = User.first
 
-user=User.new(
-  "test2", 
-  "test2",
-  "test@test.com",
-  20,
-  "JP",
-  1
-)
+# user=User.new(
+#   "test2", 
+#   "test2",
+#   "test@test.com",
+#   20,
+#   "JP",
+#   1
+# )
 
 # puts user.articles.map{|f|f}
 # puts user.likes.map{|f|f}
