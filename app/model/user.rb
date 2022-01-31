@@ -49,8 +49,8 @@ user=User.new(
   1
 )
 
-puts user.articles.map{|f|f}
-puts user.likes.map{|f|f}
+# puts user.articles.map{|f|f}
+# puts user.likes.map{|f|f}
 
 
 # puts first
