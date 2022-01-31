@@ -15,7 +15,14 @@
 
 #! ruby -Ku
 # -*- coding: utf-8 -*-
+require "erb"
+require "/Users/takeuchikazuto/project/ruby_mysql/test.rb"
+require "/Users/takeuchikazuto/project/ruby_mysql/app/controllers/users_controller.rb"
 require "webrick"
+
+
+
+
 config = {
     :Port => 8099,
     :DocumentRoot => '.'
@@ -28,4 +35,11 @@ s.config[:MimeTypes]["erb"] = "text/html"
 trap(:INT){
     s.shutdown
 }
+
+
+s.mount_proc '/users' do |req, res|
+  res.body = UsersController.index()
+end
+
+
 s.start
