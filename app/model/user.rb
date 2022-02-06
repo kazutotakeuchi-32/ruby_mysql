@@ -4,6 +4,7 @@ require "/Users/takeuchikazuto/project/ruby_mysql/app/model/like.rb"
 
 class User < MyActiveRecord
   @@table_name = "users"
+  @errors = []
 
   def initialize(firstname,lastname,email,age,location,id=nil)
     @id = id

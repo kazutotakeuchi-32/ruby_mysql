@@ -1,7 +1,8 @@
 require "/Users/takeuchikazuto/project/ruby_mysql/config/db.rb"
 
 class Like < MyActiveRecord
-  @@table_name = "users"
+  @@table_name = "likes"
+  @errors = []
 
   def initialize(user_id, article_id)
     @user_id = user_id

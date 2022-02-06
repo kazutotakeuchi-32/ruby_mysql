@@ -49,9 +49,9 @@ s.mount_proc '/api/v1/users' do |req,res|
           return nil
         end
         if path.match(/api\/v1\/users\/[0-9]/)
-          res.body = Api::V1::UsersController.show(params).to_s
+          res.body = Api::V1::UsersController.show(params)
         else
-          res.body = res.body = Api::V1::UsersController.index().to_s
+          res.body = Api::V1::UsersController.index(query)
         end
       when "POST"
 
@@ -81,12 +81,12 @@ s.mount_proc '/api/v1/articles' do |req, res|
           return nil
         end
         if path.match(/api\/v1\/articles\/[0-9]/)
-          res.body = API::V1::ArticlesController.show(params).to_s
+          res.body = API::V1::ArticlesController.show(params)
         else
-          res.body = API::V1::ArticlesController.index(query).to_s
+          res.body = API::V1::ArticlesController.index(query)
         end
       when "POST"
-        
+
       when "PUT"
 
       when "DELETE"

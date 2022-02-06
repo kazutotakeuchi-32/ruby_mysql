@@ -13,7 +13,6 @@ class ArticlesController < Controller
     begin
       html = File.read('app/views/articles/show.html.erb')
       @article = Article.find(params[:id]).map{|r|r}[-1] || nil 
-      p  @article 
       raise "記事が存在しません！" if @article.nil?
       self.render(html)
     rescue => e
