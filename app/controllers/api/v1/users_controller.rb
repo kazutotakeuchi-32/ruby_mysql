@@ -5,13 +5,13 @@ module Api
   module V1
     class UsersController < Controller
       def self.index(params=nil)
-        self.render_json(User.all().map{|r|r})
+        self.render(User.all().map{|r|r}, :json)
       end
       def self.show(params=nil)
         begin
           @user = User.find(params[:id]).map{|r|r}[-1] || nil 
           raise "ユーザが存在しません！" if @user.nil?
-          self.render_json(@user)
+          self.render(@user, :json)
         rescue => e
           e.message
         end

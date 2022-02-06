@@ -17,4 +17,7 @@ class Controller
   def self.render_json(params)
     params.to_json
   end
+  def self.render_xml(params)
+  end
+
 end

@@ -5,13 +5,13 @@ module API
   module V1
     class ArticlesController < Controller
       def self.index(params=nil)
-        self.render_json(Article.all().map{|r|r})
+        self.render(Article.all().map{|r|r}, :json)
       end
       def self.show(params=nil)
         begin
           @article = Article.find(params[:id]).map{|r|r}[-1] || nil 
           raise "記事が存在しません！" if @article.nil?
-          self.render_json(@article)
+          self.render(@article, :json)
         rescue => e
           e.message
         end
