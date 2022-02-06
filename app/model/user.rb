@@ -41,6 +41,15 @@ class User < MyActiveRecord
     @@client.query("SELECT * FROM #{@@table_name}")
   end
 
+  def self.find(id)
+    begin
+      @@table_name = "users"
+      @@client.query("SELECT * FROM #{@@table_name} WHERE id = #{id} ")
+    rescue => e
+      p e
+    end
+  end
+
 end
 
 # first = User.first

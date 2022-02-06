@@ -9,9 +9,20 @@ class UsersController < Controller
     self.render(html)
   end
   def self.show(params=nil)
+    begin
+    html = File.read('app/views/users/show.html.erb')
+    @user = User.find(params[:id]).map{|r|r}[-1] || nil 
+    
+    raise "ユーザが存在しません！" if @user.nil?
+    self.render(html)
+    rescue => e
+      return e.message
+    end
   end
+
   def self.create(params=nil)
   end
+  
   def self.update(params=nil)
   end
 
