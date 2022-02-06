@@ -39,5 +39,10 @@ class Article < MyActiveRecord
     @@client.query("SELECT * FROM #{@@table_name}")
   end
 
+  def self.find(id)
+    @@table_name = "articles"
+    @@client.query("SELECT * FROM #{@@table_name} WHERE id =#{id} ")
+  end
+
 end
 

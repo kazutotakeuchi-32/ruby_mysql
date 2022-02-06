@@ -46,7 +46,7 @@ class User < MyActiveRecord
       @@table_name = "users"
       @@client.query("SELECT * FROM #{@@table_name} WHERE id = #{id} ")
     rescue => e
-      p e
+      p e.message
     end
   end
 

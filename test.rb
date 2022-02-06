@@ -25,10 +25,10 @@ require '/Users/takeuchikazuto/project/ruby_mysql/app/model/user.rb'
 require "/Users/takeuchikazuto/project/ruby_mysql/error/my_error.rb"
 
 class N
-  # N.test
   # extend ErrorListModule
-  # N.new.test
+  # N.test
   include ErrorListModule
+  # N.new.test
 end
 
 # p N::MyError

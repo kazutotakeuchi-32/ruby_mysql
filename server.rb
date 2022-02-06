@@ -16,10 +16,11 @@
 #! ruby -Ku
 # -*- coding: utf-8 -*-
 require "erb"
+require "/Users/takeuchikazuto/project/ruby_mysql/app/controllers/api/v1/users_controller.rb"
 require "/Users/takeuchikazuto/project/ruby_mysql/app/controllers/users_controller.rb"
 require "/Users/takeuchikazuto/project/ruby_mysql/app/controllers/articles_controller.rb"
 require "webrick"
-
+include Api::V1
 
 config = {
     :Port => 8099,
@@ -34,14 +35,40 @@ trap(:INT){
     s.shutdown
 }
 
-s.mount_proc 'api/v1/users' do |req,res|
+s.mount_proc '/api/v1/users' do |req,res|
+  begin
+    path = req.path
+    query = req.query
+    params = { id: path.split("/")[-1] }.merge(query)
+
+    case req.request_method
+      when "GET"
+        if path.match(/api\v1\/users\/[0-9]\/is_logined/)
+          return nil
+        end
+        if path.match(/api\/v1\/users\/[0-9]/)
+          p Api::V1::UsersController.show(params).to_s
+          res.body = Api::V1::UsersController.show(params).to_s
+        else
+          res.body = res.body = Api::V1::UsersController.index().to_s
+        end
+      when "POST"
+
+      when "PUT"
+
+      when "DELETE"
+
+      else
+      
+    end
+  rescue => e
+    p e.backtrace
+    p e.message
+    res.body = e.message
+  end
 end
 
 s.mount_proc 'api/v1/articles' do |req, res|
-end
-
-s.mount_proc '/users/:id' do |req, res|
-  # res.body = UsersController.index()
 end
 
 s.mount_proc '/users' do |req, res|
@@ -78,7 +105,36 @@ s.mount_proc '/users' do |req, res|
 end
 
 s.mount_proc '/articles' do |req, res|
-  res.body = ArticlesController.index()
+  begin
+    path = req.path
+    query = req.query
+    params = { id: path.split("/")[-1] }.merge(query)
+
+    case req.request_method
+      when "GET"
+        if path.match(/articles\/[0-9]\/is_logined/)
+          return nil
+        end
+        if path.match(/articles\/[0-9]/)
+          res.body = ArticlesController.show(params)
+        else
+          res.body = ArticlesController.index(query)
+        end
+
+      when "POST"
+
+      when "PUT"
+
+      when "DELETE"
+
+      else
+      
+    end
+  rescue => e
+    p e.backtrace
+    p e.message
+    res.body = e.message
+  end
 end
 
 s.start

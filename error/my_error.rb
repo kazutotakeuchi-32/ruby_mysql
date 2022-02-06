@@ -26,9 +26,3 @@ module ErrorListModule
   end
 
 end
-
-# begin
-#   raise ErrorList::MyError.new("ff","fff")
-# rescue => e
-#   p e.message
-# end
