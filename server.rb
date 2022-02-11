@@ -58,12 +58,13 @@ s.mount_proc '/api/v1/users' do |req,res|
           Api::V1::UsersController.index(query)
         end
       when "POST"
+        Api::V1::UsersController.create(params)
       when "PUT"
-
+        Api::V1::UsersController.update(params)
       when "DELETE"
-
+        Api::V1::UsersController.destroy(params)
       else
-
+        raise "error"
     end
   rescue => e
     p e.backtrace
@@ -86,16 +87,16 @@ s.mount_proc '/api/v1/articles' do |req, res|
         if path.match(/api\/v1\/articles\/[0-9]/)
           res.body = API::V1::ArticlesController.show(params)
         else
-          res.body = API::V1::ArticlesController.index(query)
+          res.body = path.match(/api\/v1\/users\/search/)? API::V1::ArticlesController.search(params) : API::V1::ArticlesController.index(query)
         end
       when "POST"
-
+        res.body = API::V1::ArticlesController.create(params)
       when "PUT"
-
+        res.body = API::V1::ArticlesController.update(params)
       when "DELETE"
-
+        res.body = API::V1::ArticlesController.destroy(params)
       else
-
+        raise "error"
     end
   rescue => e
     p e.backtrace
