@@ -1,6 +1,6 @@
 require 'erb'
 require "pry"
-require '/Users/takeuchikazuto/project/ruby_mysql/app/model/user.rb'
+require "/app/model/user.rb"
 
 # erb = File.read('/Users/takeuchikazuto/project/ruby_mysql/app/views/users/index.html.erb')
 
@@ -22,7 +22,7 @@ require '/Users/takeuchikazuto/project/ruby_mysql/app/model/user.rb'
 #   puts "safety zone"
 # end
 
-require "/Users/takeuchikazuto/project/ruby_mysql/error/my_error.rb"
+require "#{__dir__ }/error/my_error.rb"
 
 class N
   # extend ErrorListModule
@@ -49,6 +49,7 @@ end
 # # rescue N::SyntaxError => e
 # #   p N::SyntaxError.new("syntax error") 
 # end
+
 
 begin
   name 

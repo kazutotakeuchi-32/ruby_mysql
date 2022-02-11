@@ -20,6 +20,11 @@ module Api
       end
       def self.update(params=nil)
       end
+      def self.search(params=nil)
+        @users = User.search(params['keyword'],params['column']).map{|r|r} || nil
+        self.render(@users, :json)
+      end
+
     end
   end
 end

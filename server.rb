@@ -41,6 +41,7 @@ s.mount_proc '/api/v1/users' do |req,res|
   begin
     path = req.path
     query = req.query
+    p query['users']
     params = { id: path.split("/")[-1] }.merge(query)
 
     case req.request_method
@@ -51,10 +52,12 @@ s.mount_proc '/api/v1/users' do |req,res|
         if path.match(/api\/v1\/users\/[0-9]/)
           res.body = Api::V1::UsersController.show(params)
         else
-          res.body = Api::V1::UsersController.index(query)
+          res.body =  path.match(/api\/v1\/users\/search/)?
+          Api::V1::UsersController.search(params)
+          :
+          Api::V1::UsersController.index(query)
         end
       when "POST"
-
       when "PUT"
 
       when "DELETE"

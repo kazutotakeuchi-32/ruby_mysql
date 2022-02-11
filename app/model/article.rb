@@ -3,7 +3,7 @@ require "/Users/takeuchikazuto/project/ruby_mysql/config/db.rb"
 class Article < MyActiveRecord
   @@table_name = "articles"
   @errors = []
-  
+
   def initialize(title,content,user_id)
     @title = title
     @content = content

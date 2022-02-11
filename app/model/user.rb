@@ -16,10 +16,15 @@ class User < MyActiveRecord
   end
 
   def self.search(keyword,column=nil)
-    if column.nil?
-      self.query("SELECT * FROM #{@@table_name} WHERE firstname OR  lastname OR email OR age OR location LIKE '%#{keyword}%'")
-    else
-      self.query("SELECT * FROM #{@@table_name} WHERE #{keyword} LIKE '%#{keyword}%'")
+    begin
+      @@table_name = "users"
+      if column.nil?
+        self.query("SELECT * FROM #{@@table_name} WHERE firstname OR  lastname OR email LIKE '%#{keyword}%'")
+      else
+        self.query("SELECT * FROM #{@@table_name} WHERE #{column} LIKE '%#{keyword}%'")
+      end
+    rescue => e
+      e.message
     end
   end
 
@@ -50,6 +55,7 @@ class User < MyActiveRecord
       p e.message
     end
   end
+
 
 end
 
