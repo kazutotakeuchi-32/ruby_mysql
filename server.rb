@@ -123,13 +123,13 @@ s.mount_proc '/users' do |req, res|
         end
 
       when "POST"
-
+        res.body = UsersController.create(params)
       when "PUT"
-
+        res.body = UsersController.update(params)
       when "DELETE"
-
+        res.body = UsersController.destroy(params)
       else
-      
+      raise "error"
     end
   rescue => e
     p e.backtrace
@@ -154,15 +154,14 @@ s.mount_proc '/articles' do |req, res|
         else
           res.body = ArticlesController.index(query)
         end
-
       when "POST"
-
+        res.body = ArticlesController.create(params)
       when "PUT"
-
+        res.body = ArticlesController.update(params)
       when "DELETE"
-
+        res.body = ArticlesController.destroy(params)
       else
-      
+        raise "error"
     end
   rescue => e
     p e.backtrace
