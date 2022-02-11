@@ -41,7 +41,6 @@ s.mount_proc '/api/v1/users' do |req,res|
   begin
     path = req.path
     query = req.query
-    p query['users']
     params = { id: path.split("/")[-1] }.merge(query)
 
     case req.request_method
