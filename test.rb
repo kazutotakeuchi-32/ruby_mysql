@@ -56,5 +56,5 @@ begin
 rescue => exception
   p exception.message
 else
-  p "safe"
+  # p "safe"
 end
